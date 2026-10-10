@@ -4,7 +4,7 @@ metadata:
   name: backstage-custom-config
   namespace: backstage
 data:
-  app-config.override.yaml: |
+  app-config.local.yaml: |
     app:
       baseUrl: http://54.208.74.125:30007
     backend:
@@ -89,10 +89,10 @@ spec:
       - name: backstage
         image: ghcr.io/backstage/backstage:latest
         imagePullPolicy: IfNotPresent
-        args: ["--config", "app-config.yaml", "--config", "/app/config/app-config.override.yaml"]
         volumeMounts:
         - name: custom-config
-          mountPath: /app/config
+          mountPath: /app/app-config.local.yaml
+          subPath: app-config.local.yaml
         env:
         - name: POSTGRES_HOST
           value: postgres-service
