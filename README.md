@@ -61,6 +61,53 @@ Built directly on top of **Kubernetes** and **Amazon Web Services (AWS)**, this 
 </code></pre>
 
 ---
+## 📸 Visual Architecture & Proof of Execution
+
+<details open>
+<summary><b>1. Security Guardrails: Kyverno Policy-as-Code Admission Enforcement</b></summary>
+
+> Automatic rejection of non-compliant pods followed by admission of compliant workloads with cost-allocation labels.
+
+![Kyverno Policy Enforcement](docs/screenshots/IDP1.PNG)
+</details>
+
+<details open>
+<summary><b>2. Cloud Abstraction: Crossplane Core & AWS Provider Setup</b></summary>
+
+> Installing Crossplane via Helm and configuring secure AWS IAM credential delegation via ProviderConfig.
+
+![Crossplane Installation](docs/screenshots/IDP2.PNG)
+![AWS ProviderConfig](docs/screenshots/IDP3.PNG)
+</details>
+
+<details open>
+<summary><b>3. Live Cloud Reconciliation: Declarative AWS S3 Bucket Provisioning</b></summary>
+
+> Native Kubernetes custom resource (`Bucket`) reconciled live in AWS (`SYNCED: True`, `READY: True`).
+
+![AWS S3 Provisioning via Crossplane](docs/screenshots/IDP4.PNG)
+</details>
+
+<details open>
+<summary><b>4. GitOps Delivery at Scale: ArgoCD ApplicationSets Auto-Discovery</b></summary>
+
+> ArgoCD controllers dynamically detecting `apps/demo-web-service` and syncing it into a dedicated namespace.
+
+![ArgoCD Pods](docs/screenshots/IDP5.PNG)
+![ArgoCD Web Dashboard](docs/screenshots/IDP6.PNG)
+</details>
+
+<details open>
+<summary><b>5. Internal Developer Portal: Spotify Backstage & Service Catalog</b></summary>
+
+> Single pane of glass for engineers, complete with guest authentication and live ingestion of software catalog components.
+
+![Backstage Pod Running](docs/screenshots/IDP7.PNG)
+![Backstage Landing Page](docs/screenshots/IDP8.PNG)
+![Backstage Service Catalog](docs/screenshots/IDP9.PNG)
+</details>
+
+---
 
 ## 🧩 The Four Platform Pillars
 
