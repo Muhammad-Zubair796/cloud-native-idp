@@ -15,6 +15,17 @@ data:
         origin: http://54.208.74.125:30007
       csp:
         upgrade-insecure-requests: false
+    auth:
+      environment: development
+      providers:
+        guest:
+          dangerouslyAllowOutsideDevelopment: true
+    catalog:
+      locations:
+        - type: url
+          target: https://github.com/Muhammad-Zubair796/cloud-native-idp/blob/main/apps/demo-web-service/catalog-info.yaml
+        - type: url
+          target: https://github.com/Muhammad-Zubair796/cloud-native-idp/blob/main/templates/golden-path-service/template.yaml
 ---
 apiVersion: apps/v1
 kind: Deployment
