@@ -1,0 +1,54 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: cloud-native-microservice
+  title: Cloud-Native Microservice (Golden Path)
+  description: Scaffolds a production-ready microservice with automated GitOps deployment and AWS S3 storage.
+  tags:
+    - recommended
+    - kubernetes
+    - aws
+    - gitops
+spec:
+  owner: platform-team
+  type: service
+
+  parameters:
+    - title: Service Configuration
+      required:
+        - component_id
+        - owner
+      properties:
+        component_id:
+          title: Service Name
+          type: string
+          description: Unique name for your microservice (e.g. payment-service)
+        description:
+          title: Description
+          type: string
+          description: What does this service do?
+        owner:
+          title: Team Owner
+          type: string
+          default: platform
+          description: Team responsible for this service (e.g. platform, billing)
+
+  steps:
+    - id: fetch-base
+      name: Generate Skeleton Files
+      action: fetch:template
+      input:
+        url: ./skeleton
+        values:
+          name: ${{ parameters.component_id }}
+          description: ${{ parameters.description }}
+          owner: ${{ parameters.owner }}
+
+    - id: publish-to-git
+      name: Publish to GitOps Repo
+      action: publish:github
+      input:
+        allowedHosts: ['github.com']
+        description: ${{ parameters.description }}
+        repoUrl: github.com?repo=cloud-native-idp&owner=Muhammad-Zubair796
+        targetPath: apps/${{ parameters.component_id }}
