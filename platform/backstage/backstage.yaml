@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backstage
+  namespace: backstage
+  labels:
+    app: backstage
+    team: platform
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backstage
+  template:
+    metadata:
+      labels:
+        app: backstage
+        team: platform
+    spec:
+      containers:
+      - name: backstage
+        image: ghcr.io/backstage/backstage:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 7007
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "512Mi"
+          limits:
+            cpu: "1000m"
+            memory: "1536Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backstage-service
+  namespace: backstage
+  labels:
+    team: platform
+spec:
+  type: NodePort
+  ports:
+  - name: http
+    port: 7007
+    targetPort: 7007
+    nodePort: 30007
+  selector:
+    app: backstage
