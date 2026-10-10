@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: demo-web-service
+  description: High-availability frontend web service managed by our IDP
+  tags:
+    - web
+    - nginx
+    - kubernetes
+  annotations:
+    argocd/app-name: demo-web-service
+    github.com/project-slug: Muhammad-Zubair796/cloud-native-idp
+spec:
+  type: service
+  lifecycle: production
+  owner: platform-team
+  system: core-platform
