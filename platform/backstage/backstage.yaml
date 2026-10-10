@@ -76,6 +76,12 @@ spec:
           value: postgres
         - name: POSTGRES_PASSWORD
           value: postgrespassword
+        - name: APP_CONFIG_app_baseUrl
+          value: "http://54.208.74.125:30007"
+        - name: APP_CONFIG_backend_baseUrl
+          value: "http://54.208.74.125:30007"
+        - name: APP_CONFIG_backend_cors_origin
+          value: "http://54.208.74.125:30007"
         ports:
         - containerPort: 7007
         resources:
