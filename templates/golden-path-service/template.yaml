@@ -41,7 +41,7 @@ spec:
         url: ./skeleton
         values:
           name: ${{ parameters.component_id }}
-          description: ${{ parameters.description }}
+          description: ${{ parameters.description or "Cloud-native microservice created via Backstage Golden Path" }}
           owner: ${{ parameters.owner }}
 
     - id: publish-to-git
@@ -51,5 +51,5 @@ spec:
         repoUrl: github.com?repo=cloud-native-idp&owner=Muhammad-Zubair796
         branchName: add-${{ parameters.component_id }}
         title: "feat(apps): scaffold ${{ parameters.component_id }}"
-        description: ${{ parameters.description }}
+        description: ${{ parameters.description or "Cloud-native microservice created via Backstage Golden Path" }}
         targetPath: apps/${{ parameters.component_id }}
