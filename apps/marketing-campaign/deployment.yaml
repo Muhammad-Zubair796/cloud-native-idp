@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: marketing-campaign
+  labels:
+    app: marketing-campaign
+    team: marketing-team
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: marketing-campaign
+  template:
+    metadata:
+      labels:
+        app: marketing-campaign
+        team: marketing-team
+    spec:
+      containers:
+      - name: app
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
