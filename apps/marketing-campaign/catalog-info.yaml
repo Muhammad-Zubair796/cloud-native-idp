@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: marketing-campaign
+  description: Marketing campaign service with cloud storage
+  annotations:
+    argocd/app-name: marketing-campaign
+spec:
+  type: service
+  lifecycle: production
+  owner: marketing-team
