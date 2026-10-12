@@ -46,9 +46,10 @@ spec:
 
     - id: publish-to-git
       name: Publish to GitOps Repo
-      action: publish:github
+      action: publish:github:pull-request
       input:
-        allowedHosts: ['github.com']
-        description: ${{ parameters.description }}
         repoUrl: github.com?repo=cloud-native-idp&owner=Muhammad-Zubair796
+        branchName: add-${{ parameters.component_id }}
+        title: "feat(apps): scaffold ${{ parameters.component_id }}"
+        description: ${{ parameters.description }}
         targetPath: apps/${{ parameters.component_id }}
